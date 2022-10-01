@@ -10,16 +10,43 @@ pipeline{
         NEXUS_USER= 'admin'
         NEXUS_PASS= 'admin'
         NEXUS_LOGIN='nexuslogin'
-
-
-
     }
    stages {
        stage('Build'){
            steps{
                sh 'mvn -s settings.xml -DskipTests install'
            }
+           post{
+               success{
+                   echo "now Archiving"
+                   archiveArtifacts artifacts: '**/*.war'
+
+               }
+           }
        }
+       stage('UNIT TEST'){
+            steps {
+                sh 'mvn -s settings.xml test'
+            }
+        }
+
+	stage('INTEGRATION TEST'){
+            steps {
+                sh 'mvn -s settings.xml verify -DskipUnitTests'
+            }
+        }
+		
+        stage ('CODE ANALYSIS WITH CHECKSTYLE'){
+            steps {
+                sh 'mvn -s settings.xml checkstyle:checkstyle'
+            }
+            post {
+                success {
+                    echo 'Generated Analysis Result'
+                }
+            }
+        }
+
 
     }
 }
