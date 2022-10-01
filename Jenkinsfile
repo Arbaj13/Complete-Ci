@@ -26,12 +26,12 @@ stages {
             }
         }
 
-        stage('Test'){
-            steps {
-                sh 'mvn -s settings.xml test'
-            }
+        // stage('Test'){
+        //     steps {
+        //         sh 'mvn -s settings.xml test'
+        //     }
 
-        }
+        // }
 
         stage('Checkstyle Analysis'){
             steps {
