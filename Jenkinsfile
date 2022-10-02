@@ -33,7 +33,7 @@ stages {
 
         // }
 
-        stage('Checkstyle Analysis'){
+        stage('Analysis'){
             steps {
                 sh 'mvn -s settings.xml checkstyle:checkstyle'
             }
