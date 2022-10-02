@@ -2,10 +2,10 @@ pipeline{
     agent any
     environment{
         RELEASE_REPO='vprofile-release'
-        CENTRAL_REPO='vpro-maven-central'
-        NEXUS_GRP_REPO= 'vpro-maven-group'
+        CENTRAL_REPO='vprofile-maven-central'
+        NEXUS_GRP_REPO= 'vprofile-group'
         SNAP_REPO ='vprofile-snapshot'
-        NEXUSIP= '172.31.27.56'
+        NEXUSIP= '172.31.29.82'
         NEXUSPORT= '8081'
         NEXUS_USER= 'admin'
         NEXUS_PASS= 'admin'
