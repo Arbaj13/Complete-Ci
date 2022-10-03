@@ -84,7 +84,7 @@ stages {
                 )
             }
         }
-            }
+}
     post {
         always {
             echo 'Slack Notifications.'
