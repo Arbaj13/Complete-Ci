@@ -19,6 +19,8 @@ pipeline{
         registryCredential = 'ecr:us-east-1:awscred'
         appRegistry = '589627010024.dkr.ecr.us-east-1.amazonaws.com/cicd'
         vprofileRegistry = "https://589627010024.dkr.ecr.us-east-1.amazonaws.com"
+        cluster= "StagingCicd"
+        service= "stagingsvc"
     }
 stages {
         stage('Build'){
@@ -109,6 +111,14 @@ stages {
             }
           }
         }
+        stage('Deploy to ECS staging') {
+            steps {
+                withAWS(credentials: 'awscred', region: 'us-east-1') {
+                    sh 'aws ecs update-service --cluster ${cluster} --service ${service} --force-new-deployment'
+                } 
+            }
+        }
+    
 
 }
     post {
