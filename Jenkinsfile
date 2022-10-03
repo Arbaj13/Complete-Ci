@@ -5,7 +5,7 @@ pipeline{
         CENTRAL_REPO='vprofile-maven-central'
         NEXUS_GRP_REPO= 'vprofile-group'
         SNAP_REPO ='vprofile-snapshot'
-        NEXUSIP= '172.31.29.82'
+        NEXUSIP= '172.31.25.247'
         NEXUSPORT= '8081'
         NEXUS_USER= 'admin'
         NEXUS_PASS= 'admin'
