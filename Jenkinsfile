@@ -9,7 +9,7 @@ pipeline{
         CENTRAL_REPO='vprofile-maven-central'
         NEXUS_GRP_REPO= 'vprofile-group'
         SNAP_REPO ='vprofile-snapshot'
-        NEXUSIP= '172.31.25.247'
+        NEXUSIP= '172.31.16.15'
         NEXUSPORT= '8081'
         NEXUS_USER= 'admin'
         NEXUS_PASS= 'admin'
@@ -20,7 +20,7 @@ pipeline{
 stages {
         stage('Build'){
             steps {
-                sh 'mvn -DskipTests install'
+                sh 'mvn -s settings.xml -DskipTests install'
             }
             post {
                 success {
