@@ -47,14 +47,15 @@ stages {
             environment {
                 scannerHome = tool "${SONARSCANNER}"
             }
-            steps {
+             steps {
                withSonarQubeEnv("${SONARSERVER}") {
                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-app \
                    -Dsonar.projectName=my-app \
                    -Dsonar.projectVersion=1.0-SNAPSHOT \
                    -Dsonar.sources=src/ \
-                   '''
-'
+                   -Dsonar.junit.reportsPath=target/surefire-reports/ \
+                   -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+                   -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
               }
             }
         }
