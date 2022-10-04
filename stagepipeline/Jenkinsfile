@@ -16,7 +16,7 @@ pipeline{
         NEXUS_LOGIN='nexuslogin'
         SONARSCANNER='sonarscanner'
         SONARSERVER='sonarserver'
-        registryCredential = 'ecr:us-east-1:awscred'
+        registryCredential = 'ecr:us-east-1:IAM'
         appRegistry = '589627010024.dkr.ecr.us-east-1.amazonaws.com/cicd'
         vprofileRegistry = "https://589627010024.dkr.ecr.us-east-1.amazonaws.com"
         cluster= "DevCluster"
@@ -114,7 +114,7 @@ stages {
         }
         stage('Deploy to ECS staging') {
             steps {
-                withAWS(credentials: 'awscred', region: 'us-east-1') {
+                withAWS(credentials: 'IAM', region: 'us-east-1') {
                     sh 'aws ecs update-service --cluster ${cluster} --service ${service} --force-new-deployment'
                 } 
             }
