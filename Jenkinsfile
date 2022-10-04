@@ -20,7 +20,7 @@ pipeline{
 stages {
         stage('Build'){
             steps {
-                sh 'mvn  -DskipTests install'
+                sh 'mvn -DskipTests install'
             }
             post {
                 success {
@@ -53,6 +53,7 @@ stages {
                    -Dsonar.projectName=my-app \
                    -Dsonar.projectVersion=1.0-SNAPSHOT \
                    -Dsonar.sources=src/ \
+'
               }
             }
         }
@@ -78,7 +79,7 @@ stages {
                   artifacts: [
                     [artifactId: 'vproapp',
                      classifier: '',
-                     file: 'target/my-app-1.0-SNAPSHOT.jar',
+                     file: 'my-app-1.0-SNAPSHOT.jar',
                      type: 'jar']
                   ]
                 )
