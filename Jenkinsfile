@@ -52,7 +52,8 @@ stages {
                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-app \
                    -Dsonar.projectName=my-app \
                    -Dsonar.projectVersion=1.0-SNAPSHOT \
-                   -Dsonar.sources=src/ \'''
+                   -Dsonar.sources=src/ \
+                   '''
 '
               }
             }
