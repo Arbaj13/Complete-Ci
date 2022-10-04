@@ -81,7 +81,7 @@ stages {
                   artifacts: [
                     [artifactId: 'vproapp',
                      classifier: '',
-                     file: 'my-app-1.0-SNAPSHOT.jar',
+                     file: 'target/my-app-1.0-SNAPSHOT.jar',
                      type: 'jar']
                   ]
                 )
