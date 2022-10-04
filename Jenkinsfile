@@ -43,31 +43,31 @@ stages {
             }
         }
 
-        stage('Sonar Analysis') {
-            environment {
-                scannerHome = tool "${SONARSCANNER}"
-            }
-             steps {
-               withSonarQubeEnv("${SONARSERVER}") {
-                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-app \
-                   -Dsonar.projectName=my-app \
-                   -Dsonar.projectVersion=1.0-SNAPSHOT \
-                   -Dsonar.sources=src/ \
-                   -Dsonar.junit.reportsPath=target/surefire-reports/ \
-                   -Dsonar.jacoco.reportsPath=target/jacoco.exec \
-                   -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
-              }
-            }
-        }
-                stage("Quality Gates") {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        // stage('Sonar Analysis') {
+        //     environment {
+        //         scannerHome = tool "${SONARSCANNER}"
+        //     }
+        //      steps {
+        //        withSonarQubeEnv("${SONARSERVER}") {
+        //            sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-app \
+        //            -Dsonar.projectName=my-app \
+        //            -Dsonar.projectVersion=1.0-SNAPSHOT \
+        //            -Dsonar.sources=src/ \
+        //            -Dsonar.junit.reportsPath=target/surefire-reports/ \
+        //            -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+        //            -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
+        //       }
+        //     }
+        // }
+        //         stage("Quality Gates") {
+        //     steps {
+        //         timeout(time: 1, unit: 'HOURS') {
+        //             // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+        //             // true = set pipeline to UNSTABLE, false = don't
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
                 stage("UploadArtifact"){
             steps{
                 nexusArtifactUploader(
